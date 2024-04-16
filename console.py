@@ -2,9 +2,6 @@
 
 """ Console Module """
 
-
-
-
 import cmd
 import sys
 from models.base_model import BaseModel
@@ -16,10 +13,11 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 import re
+
+
 class HBNBCommand(cmd.Cmd):
     """ Contains the functionality for the HBNB console"""
 
-    # determines prompt for interactive/non-interactive modes
     prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
 
     classes = {
@@ -139,7 +137,8 @@ class HBNBCommand(cmd.Cmd):
                 return
             if (re.match('^[+-]?[0-9]+$', param[1]) is not None):
                 x.__dict__[param[0]] = int(param[1])
-            elif(re.match('^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$', param[1]) is not None):
+            elif(re.match('^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$',
+                           param[1]) is not None):
                 x.__dict__[param[0]] = float(param[1])
             elif (param[1][0] == '"' and param[1][-1] == '"'):
                 param[1] = param[1].replace('_', ' ')
