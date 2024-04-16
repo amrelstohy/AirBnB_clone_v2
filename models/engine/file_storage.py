@@ -29,6 +29,7 @@ class FileStorage:
                 if (isinstance(old_obj[key], cls)):
                     new_obj[key] = value
             return new_obj
+        return FileStorage.__objects
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -64,6 +65,6 @@ class FileStorage:
         delete obj from __objects if it’s inside - if obj is equal to None, the method should not do anything
         """
         if obj:
-            key = "{}.{}".format(obj.todict()['__class__'], obj.id)
-            del(FileStorage.__objects()["{}".format(key)])
+            key = "{}.{}".format(obj.to_dict()['__class__'], obj.id)
+            del(FileStorage.__objects["{}".format(key)])
             del(obj)
