@@ -22,12 +22,11 @@ class FileStorage:
                     'State': State, 'City': City, 'Amenity': Amenity,
                     'Review': Review
                   }
-        if cls in classes:
+        if cls in classes.values():
             old_obj = FileStorage.__objects
             new_obj = {}
             for key, value in old_obj.items():
                 if (isinstance(old_obj[key], cls)):
-                    print("dddd")
                     new_obj[key] = value
             return new_obj
 
