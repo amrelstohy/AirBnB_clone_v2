@@ -27,6 +27,7 @@ class FileStorage:
             new_obj = {}
             for key, value in old_obj.items():
                 if (isinstance(old_obj[key], cls)):
+                    print("dddd")
                     new_obj[key] = value
             return new_obj
 
