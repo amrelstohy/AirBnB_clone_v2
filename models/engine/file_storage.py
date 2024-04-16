@@ -67,4 +67,3 @@ class FileStorage:
         if obj:
             key = "{}.{}".format(obj.to_dict()['__class__'], obj.id)
             del(FileStorage.__objects["{}".format(key)])
-            del(obj)
