@@ -228,7 +228,7 @@ class HBNBCommand(cmd.Cmd):
                 return
             from models.__init__ import var
             if var == 'db':
-                data = storage.all()
+                data = storage.all(args)
             else:
                 data = storage._FileStorage__objects
             for k, v in data.items():
