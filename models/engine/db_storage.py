@@ -6,7 +6,7 @@ db store engine
 from sqlalchemy import create_engine
 from models.base_model import Base
 import os
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker,scoped_session
 
 
 class DBStorage():
@@ -30,6 +30,10 @@ class DBStorage():
                                         (user, passwd, host, db), pool_pre_ping=True)
         if test == 'tets':
             Base.metadata.drop_all(bind=self.__engine)
+
+        Base.metadata.create_all(self.__engine)
+        self.__session = scoped_session(sessionmaker(
+            bind=self.__engine, expire_on_commit=False))
 
     def all(self, cls=None):
         """
@@ -64,9 +68,9 @@ class DBStorage():
         """
         Reload the db tables
         """
-        Base.metadata.create_all(bind=self.__engine)
-        Session = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        self.__session = Session()
+        Base.metadata.create_all(self.__engine)
+        self.__session = scoped_session(sessionmaker(
+            bind=self.__engine, expire_on_commit=False))
 
     def delete(self, obj=None):
         """
