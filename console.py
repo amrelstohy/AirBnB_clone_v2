@@ -230,7 +230,7 @@ class HBNBCommand(cmd.Cmd):
             if var == 'db':
                 data = storage.all(args)
             else:
-                data = storage._FileStorage__objects
+                data = storage.all(args)
             for k, v in data.items():
                 if k.split('.')[0] == args:
                     val = "{}".format(v)

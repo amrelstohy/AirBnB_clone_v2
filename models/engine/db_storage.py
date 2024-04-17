@@ -37,8 +37,8 @@ class DBStorage():
         getting all objects of the db tables
         """
         data = {}
+        from models import user, state, city, amenity, place, review
         if cls is None:
-            from models import user, state, city, amenity, place, review
             all_classes = [user.User, state.State, city.City, amenity.Amenity, place.Place, review.Review]
         else:
             all_classes = [cls]
