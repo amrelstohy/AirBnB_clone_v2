@@ -38,8 +38,9 @@ class DBStorage():
         """
         data = {}
         from models import user, state, city, amenity, place, review
+        from state import State
         if cls is None:
-            all_classes = [user.User, state.State, city.City, amenity.Amenity, place.Place, review.Review]
+            all_classes = [user.User, State, city.City, amenity.Amenity, place.Place, review.Review]
         else:
             all_classes = [cls]
         for clss in all_classes:
