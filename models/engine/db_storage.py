@@ -36,14 +36,13 @@ class DBStorage():
         getting all objects of the db tables
         """
         data = {}
-        from models import user, city, amenity, place, review
-        from models.state import State
+        from models import user, city, amenity, place, review, state
         if cls is None:
-            all_classes = [user.User, State, city.City, amenity.Amenity, place.Place, review.Review]
+            all_classes = [user.User, state.State, city.City, amenity.Amenity, place.Place, review.Review]
         else:
             all_classes = [cls]
         for clss in all_classes:
-            objects = self.__session.query(cls).all()
+            objects = self.__session.query(*cls).all()
             for obj in objects:
                 data[f"{clss.__name__}.{obj.id}"] = obj
         return data
