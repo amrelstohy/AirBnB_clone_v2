@@ -226,7 +226,12 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
+            from models.__init__ import var
+            if var == 'db':
+                data = storage.all()
+            else:
+                data = storage._FileStorage__objects
+            for k, v in data.items():
                 if k.split('.')[0] == args:
                     val = "{}".format(v)
                     print_list.append(val)
