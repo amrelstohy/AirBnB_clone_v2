@@ -37,12 +37,13 @@ class DBStorage():
         """
         data = {}
         from models import user, city, amenity, place, review, state
+        classes = [user.User, state.State, city.City, amenity.Amenity, place.Place, review.Review]
         if cls is None:
-            all_classes = [user.User, state.State, city.City, amenity.Amenity, place.Place, review.Review]
+            all_classes = classes
         else:
             all_classes = [cls]
         for clss in all_classes:
-            objects = self.__session.query(clss).all()
+            objects = self.__session.query(state.State).all()
             for obj in objects:
                 data[f"{clss.__name__}.{obj.id}"] = obj
         return data
