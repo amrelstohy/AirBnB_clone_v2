@@ -143,7 +143,7 @@ class HBNBCommand(cmd.Cmd):
                 x.__dict__[param[0]] = float(param[1])
             elif (param[1][0] == '"' and param[1][-1] == '"'):
                 param[1] = param[1].replace('_', ' ')
-                x.__dict__[param[0]] = param[1][1:-2]
+                x.__dict__[param[0]] = param[1][1:-1]
         x.save()
         
 
