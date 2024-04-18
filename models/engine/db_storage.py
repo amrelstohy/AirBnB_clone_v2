@@ -47,7 +47,7 @@ class DBStorage():
         for clss in all_classes:
             objects = self.__session.query(clss).all()
             for obj in objects:
-                data[f"{type(obj)}.{obj.id}"] = obj
+                data[f"{type(obj).__name__}.{obj.id}"] = obj
         print(data)
         return data
             
