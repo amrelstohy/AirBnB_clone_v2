@@ -73,6 +73,8 @@ class DBStorage():
         """
         self.__session.close_all()
         Base.metadata.create_all(self.__engine)
+        self.__session = scoped_session(sessionmaker(
+            bind=self.__engine, expire_on_commit=False))        
 
 
     def delete(self, obj=None):
