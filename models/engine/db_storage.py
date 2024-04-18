@@ -30,6 +30,10 @@ class DBStorage():
                                         (user, passwd, host, db), pool_pre_ping=True)
         if test == 'tets':
             Base.metadata.drop_all(bind=self.__engine)
+        
+        Base.metadata.create_all(bind=self.__engine)
+        self.__session = scoped_session(sessionmaker(
+            bind=self.__engine, expire_on_commit=False))
 
 
 
@@ -66,7 +70,7 @@ class DBStorage():
         """
         Reload the db tables
         """
-        self.__session.close()
+        self.__session.close_all()
         Base.metadata.create_all(self.__engine)
 
 
