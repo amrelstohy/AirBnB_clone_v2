@@ -7,9 +7,9 @@ from os import getenv
 var = getenv('HBNB_TYPE_STORAGE')
 if var == 'db':
     from models.engine.db_storage import DBStorage
-
-    print("sssssssss")
+    from models.state import State
     storage = DBStorage()
+    print(storage.__session.query(State).all())
     storage.reload()
 else:
     from models.engine.file_storage import FileStorage
