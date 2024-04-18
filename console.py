@@ -130,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
         x = HBNBCommand.classes[args[0]]()
         print(x.id)
         if (len_line == 1):
-            storage.save()
+            x.save()
             return
         for attr in args[1:]:
             param = attr.split("=")
@@ -144,7 +144,7 @@ class HBNBCommand(cmd.Cmd):
             elif (param[1][0] == '"' and param[1][-1] == '"'):
                 param[1] = param[1].replace('_', ' ')
                 x.__dict__[param[0]] = param[1]
-        storage.save()
+        x.save()
 
     def help_create(self):
         """ Help information for the create method """
