@@ -7,6 +7,7 @@ from sqlalchemy import create_engine, text
 from models.base_model import Base
 import os
 from sqlalchemy.orm import sessionmaker,scoped_session
+import models
 
 
 class DBStorage():
@@ -34,6 +35,7 @@ class DBStorage():
         Base.metadata.create_all(bind=self.__engine)
         self.__session = scoped_session(sessionmaker(
             bind=self.__engine, expire_on_commit=False))
+        print(self.__session.query(models.state.State).all())
 
 
 
@@ -58,7 +60,6 @@ class DBStorage():
         """
         new object addition
         """
-        print(obj)
         self.__session.add(obj)
     
     def save(self):
