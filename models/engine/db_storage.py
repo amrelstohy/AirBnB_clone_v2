@@ -66,7 +66,7 @@ class DBStorage():
         """
         Reload the db tables
         """
-        self.__session.close_all()
+        self.__session.close()
         Base.metadata.create_all(self.__engine)
 
 
