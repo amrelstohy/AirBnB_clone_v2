@@ -35,7 +35,6 @@ class DBStorage():
         Base.metadata.create_all(bind=self.__engine)
         self.__session = scoped_session(sessionmaker(
             bind=self.__engine, expire_on_commit=False))
-        print(self.__session.query(models.state.State).all())
 
 
 
