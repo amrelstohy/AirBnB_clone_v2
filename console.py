@@ -145,7 +145,7 @@ class HBNBCommand(cmd.Cmd):
                 param[1] = param[1].replace('_', ' ')
                 x.__dict__[param[0]] = param[1]
             print(x.state_id)
-        x.save()
+        
 
     def help_create(self):
         """ Help information for the create method """
