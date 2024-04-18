@@ -9,7 +9,7 @@ if var == 'db':
     from models.engine.db_storage import DBStorage
     from models.state import State
     storage = DBStorage()
-    print(storage.__session.query(State).all())
+    print(storage.all())
     storage.reload()
 else:
     from models.engine.file_storage import FileStorage
