@@ -36,7 +36,7 @@ class BaseModel:
 
     def save(self):
         """Updates updated_at with current time when instance is changed"""
-        from models import storage
+        from models.__init__ import storage
         storage.new(self)
         storage.save()
 
