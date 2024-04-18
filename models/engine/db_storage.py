@@ -3,7 +3,7 @@
 db store engine
 """
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from models.base_model import Base
 import os
 from sqlalchemy.orm import sessionmaker,scoped_session
@@ -49,7 +49,7 @@ class DBStorage():
         else:
             all_classes = [cls]
         for clss in all_classes:
-            objects = self.__session.query((clss)).all()
+            objects = self.__session.query(text("{}".format(clss))).all()
             for obj in objects:
                 data[f"{obj.__class__}.{obj.id}"] = obj
         return data
