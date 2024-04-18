@@ -144,7 +144,7 @@ class HBNBCommand(cmd.Cmd):
             elif (param[1][0] == '"' and param[1][-1] == '"'):
                 param[1] = param[1].replace('_', ' ')
                 x.__dict__[param[0]] = param[1]
-            print(x.state_id)
+            print(x.param[0])
         
 
     def help_create(self):
