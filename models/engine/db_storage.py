@@ -51,7 +51,7 @@ class DBStorage():
         for clss in all_classes:
             objects = self.__session.query(state.State).all()
             for obj in objects:
-                data[f"{clss.__name__}.{obj.id}"] = obj
+                data[f"{obj.__name__}.{obj.id}"] = obj
         return data
             
     def new(self, obj):
