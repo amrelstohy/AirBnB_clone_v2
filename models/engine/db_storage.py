@@ -62,6 +62,7 @@ class DBStorage():
         """
         commits the changes
         """
+        
         self.__session.commit()
 
     def reload(self):
