@@ -3,11 +3,10 @@
 db store engine
 """
 
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine
 from models.base_model import Base
 import os
 from sqlalchemy.orm import sessionmaker,scoped_session
-import models
 
 
 class DBStorage():
@@ -31,10 +30,6 @@ class DBStorage():
                                         (user, passwd, host, db), pool_pre_ping=True)
         if test == 'tets':
             Base.metadata.drop_all(bind=self.__engine)
-        
-        Base.metadata.create_all(bind=self.__engine)
-        self.__session = scoped_session(sessionmaker(
-            bind=self.__engine, expire_on_commit=False))
 
 
 
@@ -51,6 +46,7 @@ class DBStorage():
             all_classes = [cls]
         for clss in all_classes:
             objects = self.__session.query(clss).all()
+            print(objects)
             for obj in objects:
                 data[f"{obj.__class__}.{obj.id}"] = obj
         return data
@@ -71,8 +67,15 @@ class DBStorage():
         """
         Reload the db tables
         """
-        print(self.__session)
-        print(self.__engine)
+        from models.amenity import Amenity
+        from models.city import City
+        from models.state import State
+        from models.place import Place
+        from models.review import Review
+        from models.user import User
+        Base.metadata.create_all(bind=self.__engine)
+        self.__session = scoped_session(sessionmaker(
+            bind=self.__engine, expire_on_commit=False))
        
 
 
