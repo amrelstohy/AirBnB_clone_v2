@@ -13,6 +13,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 import re
+import os
 
 
 class HBNBCommand(cmd.Cmd):
@@ -226,7 +227,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             from models.__init__ import var
-            if var == 'db':
+            if os.getenv('HBNB_ENV') == 'db':
                 data = storage.all(args)
             else:
                 data = storage.all(args)
