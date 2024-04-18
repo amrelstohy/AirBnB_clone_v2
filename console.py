@@ -227,9 +227,9 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             if os.getenv('HBNB_ENV') == 'db':
-                data = storage.all(args)
+                data = storage.all(HBNBCommand.classes[args])
             else:
-                data = storage.all(args)
+                data = storage.all(HBNBCommand.classes[args])
             for k, v in data.items():
                 if k.split('.')[0] == args:
                     val = "{}".format(v)
