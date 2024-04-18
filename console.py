@@ -226,7 +226,6 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            from models.__init__ import var
             if os.getenv('HBNB_ENV') == 'db':
                 data = storage.all(args)
             else:
