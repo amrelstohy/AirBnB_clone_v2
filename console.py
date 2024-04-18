@@ -233,7 +233,7 @@ class HBNBCommand(cmd.Cmd):
                     val = "{}".format(v)
                     print_list.append(val)
         else:
-            data = storage.all(HBNBCommand.classes[args])
+            data = storage.all(HBNBCommand.classes)
             for k, v in data.items():
                     val = "{}".format(v)
                     print_list.append(val)
