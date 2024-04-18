@@ -127,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         x = HBNBCommand.classes[args[0]]()
-        print(x.id)
+        print(x.name)
         if (len_line == 1):
             storage.save()
             return
