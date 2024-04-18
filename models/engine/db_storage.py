@@ -58,6 +58,7 @@ class DBStorage():
         """
         new object addition
         """
+        print(obj)
         self.__session.add(obj)
     
     def save(self):
