@@ -14,5 +14,14 @@ class State(BaseModel, Base):
     
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         cities = relationship("City", cascade="all, delete", back_populates="state")
-
+    else:
+        @property
+        def cities(self):
+            from models import storage
+            from models.city import City
+            data = []
+            for obj in storage.all(City).values():
+                if obj.state_id == self.id:
+                    data.append(obj)
+            return data
 
