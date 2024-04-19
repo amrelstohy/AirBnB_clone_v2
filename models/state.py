@@ -23,6 +23,5 @@ class State(BaseModel, Base):
             for obj in storage.all(City).values():
                 if obj.state_id == self.id:
                     data.append(obj)
-            print(data)
             return data
 
