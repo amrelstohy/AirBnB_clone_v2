@@ -20,3 +20,4 @@ class Place(BaseModel, Base):
     longitude = Column(Float(), nullable=True)
     amenity_ids = []
     users = relationship("User", back_populates="places")
+    cities = relationship("City", back_populates="places")
