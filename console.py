@@ -139,7 +139,7 @@ class HBNBCommand(cmd.Cmd):
             if (re.match('^[+-]?[0-9]+$', param[1]) is not None):
                 x.__dict__[param[0]] = int(param[1])
             elif(re.match('^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$',
-                           param[1]) is not None):
+                param[1]) is not None):
                 x.__dict__[param[0]] = float(param[1])
             elif (param[1][0] == '"' and param[1][-1] == '"'):
                 param[1] = param[1].replace('_', ' ')
