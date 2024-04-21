@@ -48,3 +48,19 @@ class Place(BaseModel, Base):
                 if obj.place_id == self.id:
                     data.append(obj)
             return data
+        
+        @property
+        def amenities(self):
+            from models import storage
+            from models.amenity import Amenity
+            data = []
+            for obj in storage.all(Amenity).values():
+                if obj.id in self.amenity_ids:
+                    data.append(obj)
+            return data
+        
+        @amenities.setter
+        def amenities(self, obj):
+            from models.amenity import Amenity
+            if type(obj) == Amenity:
+                self.amenity_ids.append(obj.id)
