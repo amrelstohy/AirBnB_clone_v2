@@ -4,6 +4,7 @@ from models.base_model import BaseModel
 from models.base_model import Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
+import os
 
 
 class User(BaseModel, Base):
@@ -13,4 +14,6 @@ class User(BaseModel, Base):
     password = Column(String(128), nullable=False)
     first_name = Column(String(128), nullable=True)
     last_name = Column(String(128), nullable=True)
-    places = relationship("Place", back_populates="users")
+    if os.getenv('HBNB_TYPE_STORAGE') == 'db':
+        places = relationship("Place", back_populates="users")
+        reviews = relationship("Review", back_populates="user")

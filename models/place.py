@@ -4,6 +4,7 @@ from models.base_model import BaseModel
 from models.base_model import Base
 from sqlalchemy import Column, String, ForeignKey, Integer, Float
 from sqlalchemy.orm import relationship
+import os
 
 class Place(BaseModel, Base):
     """ A place to stay """
@@ -19,5 +20,6 @@ class Place(BaseModel, Base):
     latitude = Column(Float(), nullable=True)
     longitude = Column(Float(), nullable=True)
     amenity_ids = []
-    users = relationship("User", back_populates="places")
-    cities = relationship("City", back_populates="places")
+    if os.getenv('HBNB_TYPE_STORAGE') == 'db':
+        users = relationship("User", back_populates="places")
+        cities = relationship("City", back_populates="places")
