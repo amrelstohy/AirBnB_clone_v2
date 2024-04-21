@@ -145,7 +145,6 @@ class HBNBCommand(cmd.Cmd):
                 param[1] = param[1].replace('_', ' ')
                 x.__dict__[param[0]] = param[1][1:-1]
         x.save()
-        
 
     def help_create(self):
         """ Help information for the create method """
@@ -236,8 +235,8 @@ class HBNBCommand(cmd.Cmd):
         else:
             data = storage.all()
             for k, v in data.items():
-                    val = "{}".format(v)
-                    print_list.append(val)
+                val = "{}".format(v)
+                print_list.append(val)
 
         print(print_list)
 
