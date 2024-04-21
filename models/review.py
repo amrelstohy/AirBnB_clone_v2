@@ -16,13 +16,3 @@ class Review(BaseModel, Base):
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         user = relationship("User", back_populates="reviews")
         place = relationship("Place", back_populates="reviews")
-    else:
-        @property
-        def reviews(self):
-            from models import storage
-            from models.review import Review
-            data = []
-            for obj in storage.all(Review).values():
-                if obj.place_id == self.id:
-                    data.append(obj)
-            return data

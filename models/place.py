@@ -24,3 +24,13 @@ class Place(BaseModel, Base):
         users = relationship("User", back_populates="places")
         cities = relationship("City", back_populates="places")
         reviews = relationship("Review", back_populates="place")
+    else:
+        @property
+        def reviews(self):
+            from models import storage
+            from models.review import Review
+            data = []
+            for obj in storage.all(Review).values():
+                if obj.place_id == self.id:
+                    data.append(obj)
+            return data
