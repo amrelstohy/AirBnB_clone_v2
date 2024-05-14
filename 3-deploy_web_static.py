@@ -72,3 +72,11 @@ def do_deploy(archive_path):
 
 
 def deploy():
+    """
+    iam here making a full deploy
+    """
+
+    file_path = do_pack()
+    if file_path is None:
+        return (False)
+    return (do_deploy(file_path))
