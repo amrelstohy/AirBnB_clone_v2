@@ -25,7 +25,7 @@ sudo ln -s /data/web_static/releases/test/ /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data/
 sudo chmod -R 755 /data
 new_loc=\
-"\\tlocation /hbnb_static {\\n\\t\\talias /data/web_static/current/index.html;\\n\\t}\\n\\tlocation /hbnb_static/ {\\n\\t\\talias /data/web_static/current/;\\n\\t}"
+"\\tlocation /hbnb_static/ {\\n\\t\\talias /data/web_static/current/;\\n\\t}"
 sudo sed -i "/server {/a\\ $new_loc" /etc/nginx/sites-enabled/default
 sudo nginx -s reload
 if [[ $(pgrep -c nginx) -lt 2 ]]; then
