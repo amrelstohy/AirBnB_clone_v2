@@ -62,6 +62,8 @@ def do_deploy(archive_path):
             return (False)
         if run("sudo chown -R ubuntu:ubuntu /data/").failed is True:
             return (False)
+        if run("sudo chmod -R 755 /data").failed is True:
+            return (False)
         return (True)
     except Exception as e:
         return (False)
