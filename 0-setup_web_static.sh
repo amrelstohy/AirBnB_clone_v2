@@ -3,7 +3,8 @@
 sudo apt-get update
 sudo apt-get install nginx -y
 sudo ufw allow 'Nginx HTTP'
-sudo mkdir -p /data/web_static/releases/test/ /data/web_static/shared/
+sudo mkdir -p /data/web_static/releases/test/
+sudo mkdir -p /data/web_static/shared/
 sample="<!DOCTYPE html>
 <html lang=\"en\">
 <head>
@@ -17,11 +18,15 @@ sample="<!DOCTYPE html>
 </body>
 </html>"
 sudo bash -c "echo -e '$sample' > /data/web_static/releases/test/index.html"
-sudo ln -sn /data/web_static/releases/test/ /data/web_static/current
+if [ -L /data/web_static/current ]; then
+	sudo rm /data/web_static/current
+fi
+sudo ln -s /data/web_static/releases/test/ /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data/
+sudo chmod -R 755 /data
 new_loc=\
-"\\tlocation /hbnb_static {\\n\\t\\talias /data/web_static/current;\\n\\t}"
-sudo sed -i "/server_name 355975-web-01;/a\\ $new_loc" /etc/nginx/sites-enabled/default
+"\\tlocation /hbnb_static/ {\\n\\t\\talias /data/web_static/current/;\\n\\t}"
+sudo sed -i "/server_name 355975-web-02;/a\\ $new_loc" /etc/nginx/sites-enabled/default
 sudo nginx -s reload
 if [[ $(pgrep -c nginx) -lt 2 ]]; then
 	sudo service nginx start
