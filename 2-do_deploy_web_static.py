@@ -6,8 +6,7 @@ Deploying archive
 from fabric.api import put, run, env
 import os
 
-env.hosts = ['54.165.2.91', '54.210.108.204']
-
+env.hosts = ['localhost']
 
 def do_deploy(archive_path):
     """
