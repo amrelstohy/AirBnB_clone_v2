@@ -20,18 +20,29 @@ def do_deploy(archive_path):
         put(archive_path, "/tmp/")
         archive_name = archive_path.split('/')[-1]
         folder_name = archive_name.split('.')[0]
-        run("sudo mkdir -p /data/web_static/releases/{}".format(folder_name))
-        run("sudo tar -xzf /tmp/{} -C /data/web_static/releases/{}".format(
-            archive_name, folder_name))
-        run("sudo rm /tmp/{}".format(archive_name))
-        run("sudo rm -rf /data/web_static/current")
-        run("sudo mv /data/web_static/releases/{0}/web_static/*"
-            " /data/web_static/releases/{0}/".format(folder_name))
-        run("sudo rm -rf /data/web_static/releases/{}/web_static".format(
-            folder_name))
-        run("sudo ln -sf /data/web_static/releases/{}/"
-            " /data/web_static/current".format(folder_name))
-        run("sudo chown -R ubuntu:ubuntu /data/")
+        if run("sudo mkdir -p /data/web_static/releases/{}".format(
+                folder_name)).failed is True:
+            return (False)
+        if run("sudo tar -xzf /tmp/{} -C /data/web_static/releases/{}".format(
+                archive_name, folder_name)).failed is True:
+            return (False)
+        if run("sudo rm /tmp/{}".format(archive_name)).failed is True:
+            return (False)
+        if run("sudo rm -rf /data/web_static/current").failed is True:
+            return (False)
+        if run("sudo mv /data/web_static/releases/{0}/web_static/*"
+                " /data/web_static/releases/{0}/".format(
+                    folder_name)).failed is True:
+            return (False)
+        if run("sudo rm -rf /data/web_static/releases/{}/web_static".format(
+                folder_name)).failed is True:
+            return (False)
+        if run("sudo ln -sf /data/web_static/releases/{}/"
+                " /data/web_static/current".format(
+                    folder_name)).failed is True:
+            return (False)
+        if run("sudo chown -R ubuntu:ubuntu /data/").failed is True:
+            return (False)
         return (True)
     except Exception as e:
         return (False)
