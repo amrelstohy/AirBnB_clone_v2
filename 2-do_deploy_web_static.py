@@ -6,7 +6,8 @@ Deploying archive
 from fabric.api import put, run, env
 import os
 
-env.hosts = ['localhost']
+env.hosts = ['54.165.2.91', '54.210.108.204']
+
 
 def do_deploy(archive_path):
     """
@@ -24,7 +25,11 @@ def do_deploy(archive_path):
             archive_name, folder_name))
         run("sudo rm /tmp/{}".format(archive_name))
         run("sudo rm -rf /data/web_static/current")
-        run("ln -sf /data/web_static/releases/{}/web_static"
+        run("sudo mv /data/web_static/releases/{0}/web_static/*"
+            " /data/web_static/releases/{0}/".format(folder_name))
+        run("sudo rm -rf /data/web_static/releases/{}/web_static".format(
+            folder_name))
+        run("sudo ln -sf /data/web_static/releases/{}/"
             " /data/web_static/current".format(folder_name))
         run("sudo chown -R ubuntu:ubuntu /data/")
         return (True)
