@@ -4,7 +4,6 @@ Deploying archive
 """
 
 from fabric.api import put, run
-from fabric import Connection
 import os
 
 if __name__ == "__main__":
