@@ -57,7 +57,7 @@ def do_deploy(archive_path):
             return (False)
         run("sudo mv /data/web_static/releases/{0}/103-index.html"
             " /data/web_static/releases/{0}/index.html".format(
-                folder_name)")
+                folder_name))
         if run("sudo rm -rf /data/web_static/releases/{}/web_static".format(
                 folder_name)).failed is True:
             return (False)
