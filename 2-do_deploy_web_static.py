@@ -64,6 +64,16 @@ def do_deploy(archive_path):
             return (False)
         if run("sudo chmod -R 755 /data").failed is True:
             return (False)
+        if run('new_loc="\\tlocation /hbnb_static {\\n\\t\\talias'
+                '/data/web_static/current;\\n\\t}"').failed is True:
+            return (False)
+        if run('sudo sed -i "/server_name _;/a\\ $new_loc"'
+                ' /etc/nginx/sites-enabled/default').failed is True:
+            return (False)
+        if run('sudo nginx -s reload').failed is True:
+            return (False)
+        if run('sudo service nginx restart').failed is True:
+            return (False)
         return (True)
     except Exception as e:
         return (False)
