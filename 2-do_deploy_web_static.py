@@ -10,7 +10,6 @@ import os
 env.hosts = ['54.165.2.91', '54.210.108.204']
 
 
-@runs_once
 def do_pack():
     """
     sssssss
