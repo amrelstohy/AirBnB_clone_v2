@@ -26,11 +26,10 @@ class DBStorage():
         host = os.getenv('HBNB_MYSQL_HOST', 'localhost')
         passwd = os.getenv('HBNB_MYSQL_PWD')
         test = os.getenv('HBNB_ENV')
-        self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".format
-                                        (user, passwd, host, db), pool_pre_ping=True)
+        self.__engine = create_engine("mysql+mysqldb://{}:{}@{}"
+                                      "/{}".format(user, passwd, host, db), pool_pre_ping=True)
         if test == 'tets':
             Base.metadata.drop_all(bind=self.__engine)
-
 
 
     def all(self, cls=None):
@@ -39,7 +38,8 @@ class DBStorage():
         """
         data = {}
         from models import user, city, amenity, place, review, state
-        classes = [user.User, state.State, city.City, amenity.Amenity, place.Place, review.Review]
+        classes = [user.User, state.State, city.City,
+                   amenity.Amenity, place.Place, review.Review]
         if cls is None:
             all_classes = classes
         else:
@@ -49,18 +49,21 @@ class DBStorage():
             for obj in objects:
                 data[f"{type(obj).__name__}.{obj.id}"] = obj
         return data
-            
+
+    
     def new(self, obj):
         """
         new object addition
         """
         self.__session.add(obj)
+
     
     def save(self):
         """
         commits the changes
         """
         self.__session.commit()
+
 
     def reload(self):
         """
@@ -77,7 +80,6 @@ class DBStorage():
             bind=self.__engine, expire_on_commit=False))
        
 
-
     def delete(self, obj=None):
         """
         deleting db session
@@ -92,4 +94,3 @@ class DBStorage():
         method for closing
         """
         self.__session.remove()
-
