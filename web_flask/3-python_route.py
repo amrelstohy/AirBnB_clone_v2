@@ -31,9 +31,9 @@ def hello_print_c(text):
     new_txt = " ".join(text.split('_'))
     return "C {}".format(new_txt)
 
-
+@app.route('/python/', defaults={'text': 'is cool'}, strict_slashes=False)
 @app.route("/python/<text>", strict_slashes=False)
-def hello_print_py(text="is cool"):
+def hello_print_py(text):
     """
     dealing with variables
     """
