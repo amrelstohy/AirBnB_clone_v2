@@ -40,7 +40,6 @@ def hello_print_py(text="is cool"):
     new_txt = " ".join(text.split('_'))
     return "Python {}".format(new_txt)
 
-@app.route()
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port='5000')
