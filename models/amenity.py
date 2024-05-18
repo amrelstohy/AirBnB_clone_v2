@@ -5,6 +5,7 @@ from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 import os
 
+
 class Amenity(BaseModel, Base):
     """amenity class"""
     __tablename__ = "amenities"
