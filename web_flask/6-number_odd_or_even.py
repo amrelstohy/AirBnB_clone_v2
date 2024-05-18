@@ -4,7 +4,7 @@ iam here
 """
 
 from flask import Flask
-from markupsafe import escape
+from flask import render_template
 app = Flask(__name__)
 
 
@@ -49,7 +49,26 @@ def intger_check(n):
     checking integer
     """
     return "{} is a number".format(n)
-  
+
+
+@app.route('/number_template/<int:n>', strict_slashes=False)
+def rendering_page(n):
+    """
+    Lets add html
+    """
+    return render_template('5-number.html', num=n)
+
+
+@app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
+def rendering_page(n):
+    """
+    Lets add html with logic
+    """
+    if n % 2 == 0:
+        return render_template('6-number_odd_or_even.html', val="even")
+    else:
+        return render_template('6-number_odd_or_even.html', val="odd")
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port='5000')
