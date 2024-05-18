@@ -43,14 +43,13 @@ def hello_print_py(text):
     return "Python {}".format(new_txt)
 
 
-@app.route('/number/<n>', strict_slashes=False)
+@app.route('/number/<int:n>', strict_slashes=False)
 def intger_check(n):
-  """
-  checking integer
-  """
-  if isinstance(escape(n), int):
+    """
+    checking integer
+    """
     return "{} is a number".format(n)
-  return ""
+  
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port='5000')
