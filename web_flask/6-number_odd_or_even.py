@@ -60,7 +60,7 @@ def rendering_page(n):
 
 
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
-def rendering_page(n):
+def rendering_page_logic(n):
     """
     Lets add html with logic
     """
