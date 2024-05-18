@@ -8,6 +8,7 @@ from sqlalchemy import Column, DateTime, String
 
 Base = declarative_base()
 
+
 class BaseModel:
     """A base class for all hbnb models"""
     id = Column(String(60), nullable=False, primary_key=True)
@@ -51,10 +52,10 @@ class BaseModel:
         dictionary['created_at'] = self.created_at.isoformat()
         dictionary['updated_at'] = self.updated_at.isoformat()
         return dictionary
-    
+
     def delete(self):
         """
-        delete the current instance from the storage (models.storage) by calling the method delete
+        delete the current instance from the storage (models.storage)
         """
         from models import storage
         if storage:
