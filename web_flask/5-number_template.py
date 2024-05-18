@@ -53,10 +53,10 @@ def intger_check(n):
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def rendering_page(n):
-  """
-  Lets add html
-  """
-  return render_template('static', filename='5-number.html')
+    """
+    Lets add html
+    """
+    return render_template('5-number.html', num=n)
 
 
 if __name__ == "__main__":
