@@ -65,9 +65,9 @@ def rendering_page(n):
     Lets add html with logic
     """
     if n % 2 == 0:
-        return render_template('6-number_odd_or_even.html', {"val":"even", "num":n})
+        return render_template('6-number_odd_or_even.html', num=n, val="even")
     else:
-        return render_template('6-number_odd_or_even.html', {"val":"even", "num":n})
+        return render_template('6-number_odd_or_even.html', num=n, val="odd")
 
 
 if __name__ == "__main__":
