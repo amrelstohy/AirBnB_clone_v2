@@ -54,7 +54,7 @@ class DBStorage():
         new object addition
         """
         self.__session.add(obj)
-    
+
     def save(self):
         """
         commits the changes
