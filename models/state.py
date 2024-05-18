@@ -5,15 +5,17 @@ from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 import os
 
+
 class State(BaseModel, Base):
     """
     ssssss
     """
     __tablename__ = 'states'
     name = Column(String(128), nullable=False)
-    
+
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
-        cities = relationship("City", cascade="all, delete", back_populates="state")
+        cities = relationship("City", cascade="all, delete",
+                              back_populates="state")
     else:
         @property
         def cities(self):
@@ -24,4 +26,3 @@ class State(BaseModel, Base):
                 if obj.state_id == self.id:
                     data.append(obj)
             return data
-
