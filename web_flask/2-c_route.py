@@ -22,6 +22,14 @@ def hello_hbnb():
     """
     return "HBNB"
 
+@app.route("/c/<text>", strict_slashes=False)
+def hello_print(text):
+    """
+    dealing with variables
+    """
+    new_txt = " ".join(text.split('_'))
+    return "C {}".format(new_txt)
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port='5000')
