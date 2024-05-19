@@ -1,11 +1,11 @@
 #!/usr/bin/python
 """ holds class Place"""
-import models
 from models.base_model import BaseModel, Base
 from os import getenv
 import sqlalchemy
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship
+from models import storage
 
 if models.storage == 'db':
     place_amenity = Table('place_amenity', Base.metadata,
@@ -21,6 +21,7 @@ if models.storage == 'db':
 
 class Place(BaseModel, Base):
     """Representation of Place """
+    from models import storage
     if models.storage == 'db':
         __tablename__ = 'places'
         city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
