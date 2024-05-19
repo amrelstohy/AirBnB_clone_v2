@@ -2,7 +2,7 @@
 
 """This module instantiates an object of class FileStorage"""
 
-import os
+from os import getenv
 
 storage_t = getenv("HBNB_TYPE_STORAGE")
 
