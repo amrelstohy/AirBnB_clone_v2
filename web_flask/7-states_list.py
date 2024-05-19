@@ -5,6 +5,7 @@ getting database_data
 
 from flask import Flask, render_template
 from models import storage
+from models import *
 
 app = Flask(__name__)
 
@@ -20,7 +21,7 @@ def get_states():
 
 
 @app.teardown_appcontext
-def tearingdown_db_session(exception=None):
+def tearingdown_db_session(exception):
     """
     tear down
     """
