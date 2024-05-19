@@ -60,14 +60,3 @@ class Place(BaseModel, Base):
                 if obj.id in self.amenity_ids:
                     data.append(obj)
             return data
-        
-        @property
-        def amenities(self):
-            """getter attribute returns the list of Amenity instances"""
-            from models.amenity import Amenity
-            amenity_list = []
-            all_amenities = models.storage.all(Amenity)
-            for amenity in all_amenities.values():
-                if amenity.place_id == self.id:
-                    amenity_list.append(amenity)
-            return amenity_list
