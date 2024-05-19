@@ -8,9 +8,11 @@ import os
 
 class Amenity(BaseModel, Base):
     """Representation of Amenity """
-    if models.storage_t == 'db':
+    if models.storage == 'db':
         __tablename__ = 'amenities'
         name = Column(String(128), nullable=False)
+        place_amenities = relationship('Place', secondary=place_amenity,
+                                       viewonly=False, back_populates='amenities')
     else:
         name = ""
 
