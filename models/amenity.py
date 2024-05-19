@@ -7,8 +7,13 @@ import os
 
 
 class Amenity(BaseModel, Base):
-    """amenity class"""
-    __tablename__ = "amenities"
-    name = Column(String(128), nullable=False)
-    if os.getenv('HBNB_TYPE_STORAGE') == 'db':
-        place_amenities = relationship("Amenity", secondary="place_amenity")
+    """Representation of Amenity """
+    if models.storage_t == 'db':
+        __tablename__ = 'amenities'
+        name = Column(String(128), nullable=False)
+    else:
+        name = ""
+
+    def __init__(self, *args, **kwargs):
+        """initializes Amenity"""
+        super().__init__(*args, **kwargs)
