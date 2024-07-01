@@ -21,7 +21,7 @@ def do_deploy(archive_path):
         put(archive_path, "/tmp/")
         archive_name = archive_path.split('/')[-1]
         folder_name = archive_name.split('.')[0]
-        if run("sudo mkdir -p /data/web_static/releases/{}".format(
+        if run("sudo mkdir -p /data/web_static/releases/{}/".format(
                 folder_name)).failed is True:
             return (False)
         if run("sudo tar -xzf /tmp/{} -C /data/web_static/releases/{}".format(
