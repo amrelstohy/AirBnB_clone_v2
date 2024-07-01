@@ -38,7 +38,7 @@ def do_deploy(archive_path):
         if run("sudo rm -rf /data/web_static/releases/{}/web_static".format(
                 folder_name)).failed is True:
             return (False)
-        if run("sudo ln -sf /data/web_static/releases/{}/"
+        if run("sudo ln -s /data/web_static/releases/{}/"
                 " /data/web_static/current".format(
                     folder_name)).failed is True:
             return (False)
