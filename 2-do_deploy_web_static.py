@@ -24,7 +24,7 @@ def do_deploy(archive_path):
         if run("sudo mkdir -p /data/web_static/releases/{}/".format(
                 folder_name)).failed is True:
             return (False)
-        if run("sudo tar -xzf /tmp/{} -C /data/web_static/releases/{}".format(
+        if run("sudo tar -xzf /tmp/{} -C /data/web_static/releases/{}/".format(
                 archive_name, folder_name)).failed is True:
             return (False)
         if run("sudo rm /tmp/{}".format(archive_name)).failed is True:
