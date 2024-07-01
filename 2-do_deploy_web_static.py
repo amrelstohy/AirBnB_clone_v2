@@ -42,10 +42,6 @@ def do_deploy(archive_path):
                 " /data/web_static/current".format(
                     folder_name)).failed is True:
             return (False)
-        if run("sudo chown -R ubuntu:ubuntu /data/").failed is True:
-            return (False)
-        if run("sudo chmod -R 755 /data").failed is True:
-            return (False)
         return (True)
     except Exception as e:
         return (False)
